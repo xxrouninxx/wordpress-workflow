@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["wpwf.js"],
+  "compilerOptions": {
+    "noEmit": false,
+    "allowJs": true,
+    "outDir": "../dist/bin"
+  }
+}

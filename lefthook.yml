@@ -1,0 +1,22 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      run: npx biome check
+    type-check:
+      run: npm run typecheck
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: npm run _lint-commit-msg
+
+pre-push:
+  parallel: true
+  commands:
+    check:
+      run: npm run check
+    run-tests:
+      run: npm run test
+    are-the-types-wrong:
+      run: npm run attw

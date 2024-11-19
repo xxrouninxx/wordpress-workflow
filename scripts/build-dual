@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+TS_CONFIG="./src/tsconfig.json"
+
+# Options for tsc command
+declare -a COMMON_ARGS
+
+# Change some options based on environment (prod/dev)
+if [[ "$NODE_ENV" == 'development' ]]; then
+    COMMON_ARGS+=(
+        --incremental
+        --sourcemap
+        --declarationMap
+        --watch
+    )
+else
+    COMMON_ARGS+=(
+        --incremental false
+        --sourcemap false
+        --declarationMap false
+    )
+fi
+
+# Options to turn ESM build configuration into CJS one
+CJS_OVERRIDES=(
+    --module CommonJS
+    --moduleResolution Node
+    --outdir dist/cjs 
+)
+
+function cleanDist() {
+    npx rimraf ./dist
+}
+
+function build-cjs() {
+     tsc -p "$TS_CONFIG" "${COMMON_ARGS[@]}" "${CJS_OVERRIDES[@]}"
+     echo '{ "type": "commonjs" }' > ./dist/cjs/package.json
+}
+
+function build-esm() {
+    tsc -p "$TS_CONFIG" "${COMMON_ARGS[@]}"
+}
+
+function build-bin() {
+    tsc -p "./bin/tsconfig.json" "${COMMON_ARGS[@]}" --declaration false --sourcemap false --declarationMap false
+}
+
+cleanDist
+build-cjs & 
+build-esm &
+build-bin & 
+wait 

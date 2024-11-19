@@ -1,0 +1,60 @@
+/* Root TsConfig - Does not specify any inclues, and is primarily for IDE support and common settings to extend from */
+{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    /* Compiler Options */
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "lib": [],
+
+    /* Build Options */
+    "noEmit": true,
+    "sourceMap": false,
+    "removeComments": false,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "composite": false,
+
+    /* Type Optioins */
+    "declaration": false,
+    "declarationMap": false,
+
+    /* Module Resolution Options */
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"],
+    "resolveJsonModule": true,
+    // "baseUrl": null,
+    "paths": {},
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Enforce Strict Type Checking */
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "exactOptionalPropertyTypes": false,
+
+    /* Other Safeguards */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Experimental */
+    "experimentalDecorators": true
+  }
+}

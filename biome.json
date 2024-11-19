@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "files": {
+    "include": [
+      "bin",
+      "src",
+      "tests",
+      "package.json",
+      "tsconfig.json",
+      "typedoc.json",
+      "biome.json"
+    ],
+    "ignore": ["node_modules", "dist", "coverage"]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80
+  }
+}

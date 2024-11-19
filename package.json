@@ -1,0 +1,70 @@
+{
+  "version": "0.1.0",
+  "name": "wordpress-workflow",
+  "description": "Collection of tools for administering and developing wordpress sites",
+  "homepage": "https://github.com/xxrouninxx/wordpress-workflow",
+  "keywords": ["wordpress", "cli", "workflow"],
+  "author": "xxrouninxx",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxrouninxx/wordpress-workflow"
+  },
+  "type": "module",
+  "files": ["dist"],
+  "bin": {
+    "wpwf": "bin/wpwf.js"
+  },
+  "module": "./dist/esm/index.js",
+  "main": "./dist/cjs/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "default": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "postinstall": "lefthook install",
+    "prepare": "npm run build",
+    "_lint-commit-msg": "npx --no-install commitlint --edit \"$1\"",
+    "format": "npx biome format",
+    "format:fix": "npm run format -- --write",
+    "lint": "npx biome lint",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "npx tsc -p ./src/tsconfig.json --declaration --noEmit --incremental false",
+    "attw": "npx attw --pack .",
+    "check": "npx conc npm:typecheck \"npx biome check\" npm:attw",
+    "vitest": "npx vitest -c ./tests/vitest.config.ts",
+    "test": "npm run vitest -- --run",
+    "test:cov": "npm run test -- --coverage",
+    "test:html": "npm run test:cov && open ./coverage/index.html",
+    "clean": "rimraf ./dist",
+    "build": "./scripts/build-dual",
+    "build:docs": "npx typedoc",
+    "watch:ts": "NODE_ENV=development npm run build",
+    "watch:tests": "npm run vitest",
+    "dev": "npx concurrently 'npm:watch:*'"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.3",
+    "@biomejs/biome": "1.8.3",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.14.10",
+    "@vitest/coverage-v8": "^2.1.5",
+    "concurrently": "^8.2.2",
+    "lefthook": "^1.7.9",
+    "rimraf": "^6.0.1",
+    "tslog": "^4.9.3",
+    "typedoc": "^0.26.4",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
